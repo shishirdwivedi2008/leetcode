@@ -27,9 +27,22 @@ public class NumberTheory {
 		else
 			return findGCD(y, x % y);
 	}
+	/**
+	 * F(x)=|if x=0 return 1
+	 *      | if x!=0 return x*f(x-1)
+	 * @param x
+	 * @return
+	 */
+	public int findFactorial(int x){
+		if(x==0)
+			return 1;
+		return x* findFactorial(x-1);
+	}
 
+	
 	public static void main(String[] args) {
 		NumberTheory theory = new NumberTheory();
 		System.out.println(theory.findLCM(78477, 15));
+		System.out.println(theory.findFactorial(5));
 	}
 }

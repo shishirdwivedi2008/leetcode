@@ -4,7 +4,7 @@ import javax.swing.plaf.basic.BasicScrollPaneUI.VSBChangeListener;
 import javax.xml.bind.ValidationEvent;
 
 public class ReverseInteger {
-	int top=-1;
+	int  top=-1;
 
 	public int reverse(int x){
 		long res=0;
@@ -95,10 +95,18 @@ public class ReverseInteger {
 	
 	public boolean isValidParanthese(String s){
 		char [] arr=new char[100];
-		arr=s.toCharArray();
+		
 		for(int i=0;i<arr.length;i++){
 			if(s.charAt(i)=='{'|| s.charAt(i)=='('||s.charAt(i)=='['){
-				push(arr, top, s.charAt(i));
+				push(arr, s.charAt(i));
+			}
+			else {
+				if (top==-1){
+					return false;
+				}
+			if(! isMatchingPair(pop( arr), s.charAt(i)))
+				return false;
+				
 			}
 		}
 		
@@ -106,35 +114,49 @@ public class ReverseInteger {
 		
 		return false;
 	}
-	public boolean  push(char [] arr,int top,char s){
+	public boolean  push(char [] arr,char s){
 		if(top>=arr.length-1)
 			return false;
 		else{
-			arr[top++]=s;
+			arr[++top]=s;
 			return true;
 		}
 		
 	}
 	
-	public String pop(int top,char [] arr){
-		char value=(Character) null;
+	public Character pop(char [] arr){
+		char value;
 		if(top==-1)
-			return "-1";
+			return '0';
 		else{
 			 value=arr[top];
-			top=top-1;
+			top=top-1;;
 			
 		}
-		return Character.toString(value) ;
+		return value ;
 	}
 	
+	
+	static boolean isMatchingPair(char character1, char character2)
+	
+    {
+       if (character1 == '(' && character2 == ')')
+         return true;
+       else if (character1 == '{' && character2 == '}')
+         return true;
+       else if (character1 == '[' && character2 == ']')
+         return true;
+       else
+         return false;
+    }
 
 	
 	public static void main(String[] args) {
 		ReverseInteger reverse=new ReverseInteger();
 		//System.out.println(reverse.reverse(1534236469));
 		//System.out.println(reverse.isPalindrome(-2147447412));
-		System.out.println(reverse.convertRomanToInteger("MCMIV"));
+		//System.out.println(reverse.convertRomanToInteger("MCMIV"));
+		System.out.println(reverse.isValidParanthese("{[()]}"));
 	}
 	
 	

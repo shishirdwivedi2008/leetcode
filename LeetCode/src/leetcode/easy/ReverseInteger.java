@@ -1,8 +1,10 @@
 package leetcode.easy;
 
 import javax.swing.plaf.basic.BasicScrollPaneUI.VSBChangeListener;
+import javax.xml.bind.ValidationEvent;
 
 public class ReverseInteger {
+	int top=-1;
 
 	public int reverse(int x){
 		long res=0;
@@ -90,6 +92,43 @@ public class ReverseInteger {
         else return -1;
 	}
 	
+	
+	public boolean isValidParanthese(String s){
+		char [] arr=new char[100];
+		arr=s.toCharArray();
+		for(int i=0;i<arr.length;i++){
+			if(s.charAt(i)=='{'|| s.charAt(i)=='('||s.charAt(i)=='['){
+				push(arr, top, s.charAt(i));
+			}
+		}
+		
+		
+		
+		return false;
+	}
+	public boolean  push(char [] arr,int top,char s){
+		if(top>=arr.length-1)
+			return false;
+		else{
+			arr[top++]=s;
+			return true;
+		}
+		
+	}
+	
+	public String pop(int top,char [] arr){
+		char value=(Character) null;
+		if(top==-1)
+			return "-1";
+		else{
+			 value=arr[top];
+			top=top-1;
+			
+		}
+		return Character.toString(value) ;
+	}
+	
+
 	
 	public static void main(String[] args) {
 		ReverseInteger reverse=new ReverseInteger();
